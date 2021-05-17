@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section">
+    <p class="level-right block">
+        <a href="{{ url_for('main.add_computer') }}" class="navbar-item title is-6">
+            <ion-icon class="pr-2" name="add-circle-outline" size="large"></ion-icon>
+            Додати комп'ютер
+        </a>
+    </p>
+    {% include 'notification.html' %}
+    <div class="table_div">
+        {{ table|safe }}
+    </div>
+</div>
+{% endblock %}

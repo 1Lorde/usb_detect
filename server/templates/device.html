@@ -1,0 +1,40 @@
+{% extends "message.html" %}
+
+{% block message_header %}
+<ion-icon name="hardware-chip-outline" size="large"></ion-icon>
+<span class="pl-2">{{ header }}</span>
+{% endblock %}
+
+{% block message_body %}
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="columns">
+        <div class="column"></div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">{{ form.name.label }}</label>
+                <p class="control">
+                    {{ form.name(class='input') }}
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.serial.label }}</label>
+                <div class="control">
+                    {{ form.serial(class='input') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="column"></div>
+    </div>
+    <hr/>
+    <div class="columns is-centered">
+        <div class="column is-2">
+            <div class="control has-icon-right">
+                {{ form.submit(class='button is-rounded is-primary is-fullwidth') }}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

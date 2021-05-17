@@ -1,0 +1,65 @@
+{% with notifications = get_flashed_messages(with_categories=True) %}
+    {% if notifications %}
+        {%- for msg in notifications %}
+            {% if msg[0] == "error" %}
+                <div class="notification is-danger">
+                    <button class="delete"></button>
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span><ion-icon size="large" name="alert-circle-outline"></ion-icon></span>
+                        </div>
+                        <div class="level-item">
+                            <h6 class="subtitle is-6">{{ msg[1] }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if msg[0] == "success" %}
+                <div class="notification is-success">
+                    <button class="delete"></button>
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span><ion-icon size="large" name="checkmark-circle-outline"></ion-icon></span>
+                        </div>
+                        <div class="level-item">
+                            <h6 class="subtitle is-6">{{ msg[1] }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if msg[0] == "warning" %}
+                <div class="notification is-warning">
+                    <button class="delete"></button>
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span><ion-icon size="large" name="warning-outline"></ion-icon></span>
+                        </div>
+                        <div class="level-item">
+                            <h6 class="subtitle is-6 has-text-dark">{{ msg[1] }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endfor -%}
+    {% endif %}
+{% endwith %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            var div = document.createElement('div');
+            div.className = 'level';
+
+
+            $delete.addEventListener('click', () => {
+                var parentNode = $notification.parentNode;
+                parentNode.insertBefore(div, document.getElementById('workspace'));
+                parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>

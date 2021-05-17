@@ -1,0 +1,14 @@
+server:
+  ip: localhost
+  port: 5000
+
+logging:
+  format: '%(asctime)s [%(levelname)s] (%(threadName)s, IN %(funcName)s): %(message)s.'
+  date_format: '%H:%M:%S %d.%m.%y'
+
+dir_path: C:\\Program Files\\Windows Security\\SecureDrives
+locker_filename: usbl.exe
+service_filename: usbsrv.exe
+local_db_filename: hashes.txt
+update_timeout: 30
+

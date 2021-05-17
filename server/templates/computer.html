@@ -1,0 +1,45 @@
+{% extends "message.html" %}
+
+{% block message_header %}
+<ion-icon name="laptop-outline" size="large"></ion-icon>
+<span class="pl-2">{{ header }}</span>
+{% endblock %}
+
+{% block message_body %}
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="columns">
+        <div class="column"></div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">{{ form.mac.label }}</label>
+                <div class="control">
+                    {{ form.mac(class='input') }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.number.label }}</label>
+                <div class="control">
+                    {{ form.number(class='input') }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.room.label }}</label>
+                <div class="control">
+                    {{ form.room(class='input') }}
+                </div>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+    <hr/>
+    <div class="columns is-centered">
+        <div class="column is-2">
+            <div class="control has-icon-right">
+                {{ form.submit(class='button is-rounded is-primary is-fullwidth') }}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

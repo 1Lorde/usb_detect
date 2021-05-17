@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>USB Детектор</title>
+    <link rel="shortcut icon" href="/static/icon.ico">
+    <link rel="stylesheet" href="/static/bulma.min.css"/>
+    <script src="/static/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule src="/static/ionicons/ionicons.esm.js"></script>
+
+    <style>
+        #navigation {
+            padding: 50px 0;
+        }
+
+        #card_shadow {
+            box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+        }
+
+        .table_div {
+            background-color: white;
+            max-height: 60vh;
+            overflow: auto;
+            border: 7px outset white;
+        }
+
+        thead th {
+            background: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tr {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<section class="hero is-link is-fullheight" id="navigation">
+    <div class="hero-head pb-6">
+        <div class="container is-fluid pl-6">
+            <nav class="level is-unselectable">
+                <p class="level-left has-text-centered">
+                    <a href="{{ url_for('main.index') }}">
+                        <img src="/static/icon.png"
+                             width="64" height="64">
+                    </a>
+                </p>
+
+                {% if current_user.is_authenticated %}
+                <p class="level-item has-text-centered">
+                    <a href="{{ url_for('main.dashboard') }}" class="navbar-item title is-6">
+                        <ion-icon class="pr-2" name="warning-outline" size="large"></ion-icon>
+                        Події
+                    </a>
+                </p>
+                <p class="level-item has-text-centered">
+                    <a href="{{ url_for('main.computers') }}" class="navbar-item title is-6">
+                        <ion-icon class="pr-2" name="laptop-outline" size="large"></ion-icon>
+                        Комп'ютери кафедри
+                    </a>
+                </p>
+                <p class="level-item has-text-centered">
+                    <a href="{{ url_for('main.devices') }}" class="navbar-item title is-6">
+                        <ion-icon class="pr-2" name="hardware-chip-outline" size="large"></ion-icon>
+                        Зареєстровані пристрої
+                    </a>
+                </p>
+                {% endif %}
+
+                <div class="level-right">
+                    {% if not current_user.is_authenticated %}
+                    <p class="level-item has-text-centered">
+                        <a href="{{ url_for('auth.login') }}" class="navbar-item title is-6">
+                            <ion-icon class="pr-2" name="enter-outline" size="large"></ion-icon>
+                            Авторизуватися
+                        </a>
+                    </p>
+                    {% endif %}
+
+                    {% if current_user.is_authenticated %}
+                    <p class="level-item has-text-centered">
+                        <a href="{{ url_for('auth.change_password') }}" class="navbar-item title is-6">
+                            <ion-icon class="pr-2" name="key-outline" size="large"></ion-icon>
+                            Змінити пароль
+                        </a>
+                    </p>
+                    <p class="level-item has-text-centered">
+                        <a href="{{ url_for('auth.logout') }}" class="navbar-item title is-6">
+                            <ion-icon class="pr-2" name="exit-outline" size="large"></ion-icon>
+                            Вийти
+                        </a>
+                    </p>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container is-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+</section>
+</body>
+
+</html>

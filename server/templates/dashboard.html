@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section">
+    <div class="panel">
+        <div class="panel-heading has-background-light">
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title has-text-info">{{stats.total}}</p>
+                        <p class="heading">Всього подій</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title has-text-danger">{{stats.unauthorized}}</p>
+                        <p class="heading">Неавторизованих</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="title has-text-success">{{stats.registered}}</p>
+                        <p class="heading ">Авторизованих</p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {% include 'notification.html' %}
+        <div class="table_div">
+            {{ table|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
